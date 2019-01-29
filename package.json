@@ -1,0 +1,10 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My portfolio",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Maciej Skwarczek",
+  "license": "ISC"
+}
