@@ -4,6 +4,7 @@
   "description": "My portfolio",
   "main": "index.js",
   "scripts": {
+      "start": "sass --watch src/styles.scss:src/styles.css"
   },
   "author": "Maciej Skwarczek",
   "license": "ISC"

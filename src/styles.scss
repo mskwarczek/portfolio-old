@@ -1,0 +1,118 @@
+$color-primary: #fff;
+$color-secondary: #000;
+$color-highlight: red;
+$color-shadow: #232323;
+
+@mixin position-lt ($horizontal, $vertical) {
+    position: absolute;
+    top: $vertical;
+    left: $horizontal;
+    transform: translate(-$horizontal, -$vertical);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.section-title {
+    text-align: center;
+}
+
+.highlight {
+    color: $color-highlight;
+}
+
+#hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    .content {
+        @include position-lt(50%, 50%);
+        text-align: center;
+        color: $color-primary;
+    }
+
+    .button {
+        margin: 20px 20%;
+        padding: 10px;
+        border: 2px solid $color-primary;
+        border-radius: 10px;
+    }
+}
+
+#nav {
+
+    .list {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: left;
+        margin: 0;
+        padding: 0 5%;
+        background-color: $color-shadow;
+        color: $color-primary;
+        list-style-type: none;
+    }
+
+    .item {
+        padding: 10px 20px;
+
+        &:hover {
+            color: $color-highlight;
+            cursor: pointer;
+        }
+    }
+}
+
+#about {
+
+    .skills {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+    }
+
+    .technologies {
+        display: grid;
+        grid-template-columns: auto 80px 80px 80px auto;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            ". . . one ."
+            ". . two . ."
+            ". . three four ."
+            ". five . . ."
+            ". six . seven ."
+            ". eight nine . .";
+        grid-gap: 10px 10px;
+    }
+
+    .technology {
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        color: $color-secondary;
+        border-radius: 50%;
+        border: 1px solid $color-secondary;
+
+        &:hover {
+            background-color: $color-secondary;
+            color: $color-primary;
+        }
+
+        &:nth-child(1) { grid-area: one; }
+        &:nth-child(2) { grid-area: two; }
+        &:nth-child(3) { grid-area: three; }
+        &:nth-child(4) { grid-area: four; }
+        &:nth-child(5) { grid-area: five; }
+        &:nth-child(6) { grid-area: six; }
+        &:nth-child(7) { grid-area: seven; }
+        &:nth-child(8) { grid-area: eight; }
+        &:nth-child(9) { grid-area: nine; }
+    }
+}
