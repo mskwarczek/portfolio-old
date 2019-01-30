@@ -8,6 +8,7 @@
     <title>Maciej Skwarczek - Portfolio</title>
     <meta name="description" content="Maciej Skwarczek - Web Developer Portfolio" />
     <meta name="author" content="Maciej Skwarczek" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
     <link rel="stylesheet" href="src/styles.css" />
 </head>
 
@@ -18,40 +19,46 @@
         <canvas id="canvas"></canvas>
         <div class="content">
             <h1>Hello, I'm <span class="highlight">Maciej Skwarczek</span>.</br>I'm a web developer.</h1>
-            <div class="button">Check out my projects</div>
+            <div><a class="button" href="#about">Check out my projects</a></div>
         </div>
     </section>
 
 <!-- NAVIGATION -->
     <nav id="nav">
-        <ul class="list">
-            <li class="item">Home</li>
-            <li class="item">About</li>
-            <li class="item">Projects</li>
-            <li class="item">Contact</li>
-        </ul>
+        <div class="list">
+            <a class="item" href="#hero">Home</a>
+            <a class="item" href="#about">About</a>
+            <a class="item" href="#projects">Projects</a>
+            <a class="item" href="#contact">Contact</a>
+        </div>
     </nav>
 
 <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="container">
         <h2 class="section-title">About</h2>
-        <div class="skills">
-            <div class="skill">Flexible</div>
-            <div class="skill">Dynamic</div>
-            <div class="skill">User-friendly</div>
-            <div class="skill">Scallable</div>
-            <div class="skill">Optimized</div>
+        <h3>I believe every web application should be:</h3>
+        <div class="features">
+            <div class="feature"><i class="fas fa-ruler-combined"></i>Responsive</div>
+            <div class="feature"><i class="fas fa-rocket"></i>Dynamic</div>
+            <div class="feature"><i class="fas fa-users"></i>User-friendly</div>
+            <div class="feature"><i class="fas fa-boxes"></i>Scallable</div>
+            <div class="feature"><i class="fas fa-laptop-code"></i>Optimized</div>
         </div>
+        <h3>Technologies I use:</h3>
         <div class="technologies">
-            <div class="technology">JavaScript</div>
-            <div class="technology">HTML5</div>
-            <div class="technology">React</div>
-            <div class="technology">Redux</div>
-            <div class="technology">CSS</div>
-            <div class="technology">Sass</div>
-            <div class="technology">Bootstrap</div>
-            <div class="technology">Node.js</div>
-            <div class="technology">MongoDB</div>
+            <div class="technology"><img src="./src/pictures/javascript.svg" alt="JavaScript" title="JavaScript"/></div>
+            <div class="technology"><img src="./src/pictures/html5.svg" alt="HTML5" title="HTML5"/></div>
+            <div class="technology"><img src="./src/pictures/react.svg" alt="React" title="React"/></div>
+            <div class="technology"><img src="./src/pictures/redux.svg" alt="Redux" title="Redux"/></div>
+            <div class="technology"><img src="./src/pictures/webpack.svg" alt="Webpack" title="Webpack"/></div>
+            <div class="technology"><img src="./src/pictures/babel.svg" alt="Babel" title="Babel"/></div>
+            <div class="technology"><img src="./src/pictures/css3.svg" alt="CSS" title="CSS"/></div>
+            <div class="technology"><img src="./src/pictures/sass.svg" alt="Sass" title="Sass"/></div>
+            <div class="technology"><img src="./src/pictures/bootstrap.svg" alt="Bootstrap" title="Bootstrap"/></div>
+            <div class="technology"><img src="./src/pictures/npm.svg" alt="npm" title="npm"/></div>
+            <div class="technology"><img src="./src/pictures/git.svg" alt="Git" title="Git"/></div>
+            <div class="technology"><img src="./src/pictures/nodejs.svg" alt="Node.js" title="Node.js"/></div>
+            <div class="technology"><img src="./src/pictures/mongodb.svg" alt="MongoDB" title="MongoDB"/></div>
         </div>
     </section>
 
@@ -59,26 +66,56 @@
     <section id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="project">
-            <div>
-
-            </div>
-            <div>
+            <img src="./src/pictures/online-store.jpg" alt="Online Store" class="image"/>
+            <div class="description">
                 <h3 class="title">Online store</h3>
-                <p>Front-end side of an online store based on React, Redux and React-Router.</p>
-                <p>See it on GitHub https://github.com/mskwarczek/react-redux-online-store</p>
-                <p>See it online! (in a new tab) http://www.store1.mskwarczek.com</p>
+                <p>Front-end side of an online store</p>
+                <p class="highlight">React + Redux</p>
+                <a href="https://github.com/mskwarczek/react-redux-online-store" target="_blank" class="button">See code on GitHub</a>
+                <a href="http://www.store1.mskwarczek.com" target="_blank" class="button">See it online!</a>
             </div>
-            
         </div>
+        <div class="wave"></div>
     </section>
 
 <!-- CONTACT -->
-    <section id="contact">
+    <section id="contact" class="container">
         <h2 class="section-title">Contact me!</h2>
-
-        <h3>Maciej Skwarczek 2019</h3>
+        <p class="highlight">We will build great things together :)</p>
+        <div>
+            Check out my LinkedIn account
+            <a href="https://www.linkedin.com/in/maciej-s-372514166/" target="_blank">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span><i class="fab fa-linkedin-in"></i></span>
+            </a>
+        </div>
+        <div>
+            See more of my projects on GitHub
+            <a href="https://github.com/mskwarczek" target="_blank">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span><i class="fab fa-github"></i></span>
+            </a>
+        </div>
+        <div>
+            Send me an e-mail
+            <a href="mailto:contact@mskwarczek.com">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span><i class="fas fa-at"></i></span>
+            </a>
+        </div>
     </section>
+    <h3 class="footer">Maciej Skwarczek 2019</h3>
 
+    <script src="src/hero.js"></script>
     <script src="src/scripts.js"></script>
 </body>
 

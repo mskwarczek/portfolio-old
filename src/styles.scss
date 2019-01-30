@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
+
 $color-primary: #fff;
-$color-secondary: #000;
-$color-highlight: red;
-$color-shadow: #232323;
+$color-secondary: #232323;
+$color-highlight: #dc143c;
+$color-picture: #4169e1;
 
 @mixin position-lt ($horizontal, $vertical) {
     position: absolute;
@@ -10,8 +12,31 @@ $color-shadow: #232323;
     transform: translate(-$horizontal, -$vertical);
 }
 
+@mixin wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 143px;
+    width: 100%;
+    background-image: url(./pictures/wave.png);
+}
+
+@keyframes wave {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 1360px;
+    }
+}
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    font-size: calc(0.6em + 0.7vw);
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -19,8 +44,36 @@ body {
     padding: 0;
 }
 
-.section-title {
+h1 {
+    font-size: 2em;
+}
+
+h3 {
+    margin: 2em auto 1.5em;
+    font-weight: normal;
+    color: $color-secondary;
     text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 1em auto;
+    padding: .5em;
+}
+
+.section-title {
+    margin: 1.5em auto;
+    font-size: 2em;
+    text-align: center;
+    text-transform: uppercase;
+    color: $color-secondary;
+
+    &::before,
+    &::after {
+        content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+        text-decoration: line-through;
+        padding: 0 20px;
+    }
 }
 
 .highlight {
@@ -44,24 +97,37 @@ body {
         padding: 10px;
         border: 2px solid $color-primary;
         border-radius: 10px;
+        color: $color-primary;
+        text-decoration: none;
+        transition: .2s linear;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color-highlight;
+            border-color: $color-highlight;
+        }
     }
 }
 
 #nav {
+    background-color: $color-secondary;
+    z-index: 100;
 
     .list {
         display: flex;
         flex-flow: row nowrap;
         justify-content: left;
-        margin: 0;
-        padding: 0 5%;
-        background-color: $color-shadow;
-        color: $color-primary;
-        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+        height: 60px;
+        max-width: 1200px;
     }
 
     .item {
         padding: 10px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: $color-primary;
 
         &:hover {
             color: $color-highlight;
@@ -70,49 +136,241 @@ body {
     }
 }
 
-#about {
+.stick {
+    position: fixed;
+    top: 0;
+    width: 100%;
 
-    .skills {
+    & + section {
+        padding-top: 60px;
+    }
+}
+
+#about {
+    text-align: center;
+
+    .features {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         justify-content: space-evenly;
+
+        .feature {
+            margin: 20px;
+        }
+
+        i {
+            display: block;
+            margin: 20px auto;
+            width: 6em;
+            height: 6em;
+            line-height: 6em;
+            max-width: 200px;
+            max-height: 200px;
+            color: $color-primary;
+            background-color: $color-picture;
+            border-radius: 50%;
+
+            &:before {
+                font-size: 3em;
+            }
+        }
     }
 
     .technologies {
-        display: grid;
-        grid-template-columns: auto 80px 80px 80px auto;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            ". . . one ."
-            ". . two . ."
-            ". . three four ."
-            ". five . . ."
-            ". six . seven ."
-            ". eight nine . .";
-        grid-gap: 10px 10px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        padding: 20px 0;
     }
 
     .technology {
-        height: 80px;
-        line-height: 80px;
+        position: relative;
+        height: 5em;
+        width: 5em;
+        line-height: 5em;
+        margin: 5px;
         text-align: center;
-        color: $color-secondary;
-        border-radius: 50%;
-        border: 1px solid $color-secondary;
 
-        &:hover {
-            background-color: $color-secondary;
-            color: $color-primary;
+        img {
+            @include position-lt(50%, 50%);
+            max-width: 100%;
+            height: auto;
+            max-height: 5em;
+            opacity: .5;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#projects {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 3em auto 1em;
+    padding: .5em .5em 250px;
+    color: $color-primary;
+    background-color: $color-picture;
+
+    .section-title {
+        width: 100%;
+        color: $color-primary;
+    }
+
+    .project {
+        position: relative;
+        height: 300px;
+        width: auto;
+        background-color: $color-secondary;
+
+        &:hover .image {
+            opacity: .1;
         }
 
-        &:nth-child(1) { grid-area: one; }
-        &:nth-child(2) { grid-area: two; }
-        &:nth-child(3) { grid-area: three; }
-        &:nth-child(4) { grid-area: four; }
-        &:nth-child(5) { grid-area: five; }
-        &:nth-child(6) { grid-area: six; }
-        &:nth-child(7) { grid-area: seven; }
-        &:nth-child(8) { grid-area: eight; }
-        &:nth-child(9) { grid-area: nine; }
+        &:hover .description {
+            opacity: 1;
+        }
+
+        .image {
+            display: block;
+            width: auto;
+            height: 100%;
+            transition: .2s linear;
+        }
+
+        .description {
+            @include position-lt(50%, 50%);
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: .2s linear;
+        }
+
+        .title {
+            margin: 10px 0;
+            text-transform: uppercase;
+            color: $color-primary;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            max-width: 60%;
+            margin: 10px auto;
+            padding: 5px;
+            border: 1px solid $color-primary;
+            border-radius: 10px;
+            color: $color-primary;
+            text-decoration: none;
+            transition: .2s linear;
+    
+            &:hover {
+                cursor: pointer;
+                background-color: $color-highlight;
+                border-color: $color-highlight;
+            }
+        }
     }
+
+    .wave {
+        @include wave();
+        animation: wave 10s linear infinite;
+
+        &::before {
+            @include wave();
+            content: "";
+            animation: wave 12s linear infinite reverse;
+            opacity: 0.6;
+        }
+
+        &::after {
+            @include wave();
+            content: "";
+            animation: wave 15s linear infinite;
+            animation-delay: -3s;
+            opacity: 0.4;
+        }
+    }
+}
+
+#contact {
+    text-align: center;
+
+    p {
+        margin: 1.5em 0;
+        font-weight: bold;
+    }
+
+    div {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: 5em;
+        max-width: 600px;
+        margin: 1em auto;
+    }
+
+    a {
+        position: relative;
+        display: block;
+        height: 3em;
+        width: 3em;
+        color: $color-secondary;
+        transform: rotate(-30deg) skew(25deg);
+
+        &:hover span:nth-child(5) {
+            transform: translate(40px, -40px);
+            color: $color-primary;
+            border-color: $color-highlight;
+            opacity: 1;
+        }
+
+        &:hover span:nth-child(4) {
+            transform: translate(30px, -30px);
+            border-color: $color-highlight;
+            opacity: .8;
+        }
+
+        &:hover span:nth-child(3) {
+            transform: translate(20px, -20px);
+            border-color: $color-highlight;
+            opacity: .6;
+        }
+
+        &:hover span:nth-child(2) {
+            transform: translate(10px, -10px);
+            border-color: $color-highlight;
+            opacity: .4;
+        }
+
+        &:hover span:nth-child(1) {
+            border-color: $color-highlight;
+            opacity: .2;
+        }
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color-highlight;
+        border: 1px solid $color-secondary;
+        transition: .2s ease-in;
+    }
+
+    i::before {
+        @include position-lt(50%, 50%);
+        font-size: 2em;
+    }
+}
+
+.footer {
+    margin: 3em 0 .5em;
 }
