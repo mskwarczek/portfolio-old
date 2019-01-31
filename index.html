@@ -17,35 +17,37 @@
 <!-- HERO -->
     <section id="hero">
         <canvas id="canvas"></canvas>
-        <div class="content">
-            <h1>Hello, I'm <span class="highlight">Maciej Skwarczek</span>.</br>I'm a web developer.</h1>
+        <div class="content show">
+            <h1>Hello, <span class="cut">I'm <span class="highlight">Maciej Skwarczek</span></span><br class="no-xs">I'm a web developer</h1>
             <div><a class="button" href="#about">Check out my projects</a></div>
         </div>
     </section>
 
 <!-- NAVIGATION -->
     <nav id="nav">
+        <div class="menu" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         <div class="list">
             <a class="item" href="#hero">Home</a>
             <a class="item" href="#about">About</a>
             <a class="item" href="#projects">Projects</a>
             <a class="item" href="#contact">Contact</a>
         </div>
+        <div class="progress-bar"></div>
     </nav>
 
 <!-- ABOUT -->
     <section id="about" class="container">
-        <h2 class="section-title">About</h2>
-        <h3>I believe every web application should be:</h3>
-        <div class="features">
+        <h2 class="section-title hidden">About</h2>
+        <h3 class="hidden">I believe every web application should be:</h3>
+        <div class="features hidden">
             <div class="feature"><i class="fas fa-ruler-combined"></i>Responsive</div>
             <div class="feature"><i class="fas fa-rocket"></i>Dynamic</div>
             <div class="feature"><i class="fas fa-users"></i>User-friendly</div>
             <div class="feature"><i class="fas fa-boxes"></i>Scallable</div>
             <div class="feature"><i class="fas fa-laptop-code"></i>Optimized</div>
         </div>
-        <h3>Technologies I use:</h3>
-        <div class="technologies">
+        <h3 class="hidden">Technologies I use:</h3>
+        <div class="technologies hidden">
             <div class="technology"><img src="./src/pictures/javascript.svg" alt="JavaScript" title="JavaScript"/></div>
             <div class="technology"><img src="./src/pictures/html5.svg" alt="HTML5" title="HTML5"/></div>
             <div class="technology"><img src="./src/pictures/react.svg" alt="React" title="React"/></div>
@@ -64,8 +66,8 @@
 
 <!-- PROJECTS -->
     <section id="projects">
-        <h2 class="section-title">Projects</h2>
-        <div class="project">
+        <h2 class="section-title hidden">Projects</h2>
+        <div class="project hidden">
             <img src="./src/pictures/online-store.jpg" alt="Online Store" class="image"/>
             <div class="description">
                 <h3 class="title">Online store</h3>
@@ -75,14 +77,16 @@
                 <a href="http://www.store1.mskwarczek.com" target="_blank" class="button">See it online!</a>
             </div>
         </div>
-        <div class="wave"></div>
     </section>
+    <div class="wave-wrapper">
+        <div class="wave"></div>
+    </div>
 
 <!-- CONTACT -->
     <section id="contact" class="container">
-        <h2 class="section-title">Contact me!</h2>
-        <p class="highlight">We will build great things together :)</p>
-        <div>
+        <h2 class="section-title hidden">Contact me!</h2>
+        <p class="highlight hidden">We will build great things together :)</p>
+        <div class="hidden">
             Check out my LinkedIn account
             <a href="https://www.linkedin.com/in/maciej-s-372514166/" target="_blank">
                 <span></span>
@@ -92,7 +96,7 @@
                 <span><i class="fab fa-linkedin-in"></i></span>
             </a>
         </div>
-        <div>
+        <div class="hidden">
             See more of my projects on GitHub
             <a href="https://github.com/mskwarczek" target="_blank">
                 <span></span>
@@ -102,7 +106,7 @@
                 <span><i class="fab fa-github"></i></span>
             </a>
         </div>
-        <div>
+        <div class="hidden">
             Send me an e-mail
             <a href="mailto:contact@mskwarczek.com">
                 <span></span>

@@ -1,10 +1,42 @@
+// External imports
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
 
+// Variables
 $color-primary: #fff;
 $color-secondary: #232323;
 $color-highlight: #dc143c;
 $color-picture: #4169e1;
 
+// RWD
+$extra-small-width: 380px;
+$small-width: 460px;
+$medium-width: 900px;
+
+@mixin extra-small {
+	@media (max-width: #{$extra-small-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin small {
+	@media (max-width: #{$small-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin medium {
+	@media (max-width: #{$medium-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin no-hover {
+	@media (hover: none) {
+		@content;
+	}
+}
+
+// Mixins
 @mixin position-lt ($horizontal, $vertical) {
     position: absolute;
     top: $vertical;
@@ -21,6 +53,7 @@ $color-picture: #4169e1;
     background-image: url(./pictures/wave.png);
 }
 
+// Animations
 @keyframes wave {
     0% {
         background-position: 0;
@@ -30,6 +63,16 @@ $color-picture: #4169e1;
     }
 }
 
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+// Global styles
 * {
     box-sizing: border-box;
 }
@@ -58,7 +101,7 @@ h3 {
 .container {
     max-width: 1200px;
     margin: 1em auto;
-    padding: .5em;
+    padding: .5em 1em;
 }
 
 .section-title {
@@ -70,9 +113,12 @@ h3 {
 
     &::before,
     &::after {
-        content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+        content: '\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0';
         text-decoration: line-through;
         padding: 0 20px;
+        @include extra-small() {
+            content: '\00a0\00a0\00a0\00a0';
+        }
     }
 }
 
@@ -80,6 +126,22 @@ h3 {
     color: $color-highlight;
 }
 
+.hidden {
+    opacity: 0;
+}
+
+.show {
+    animation: show .7s linear;
+    animation-fill-mode: backwards;
+}
+
+.no-xs {
+    @include extra-small() {
+        display: none;
+    }
+}
+
+// Hero
 #hero {
     position: relative;
     height: 100vh;
@@ -88,12 +150,20 @@ h3 {
 
     .content {
         @include position-lt(50%, 50%);
+        width: 90vw;
         text-align: center;
         color: $color-primary;
+
+        .cut {
+            @include extra-small() {
+                display: table;
+                margin: 0 auto;
+            }
+        }
     }
 
     .button {
-        margin: 20px 20%;
+        margin: 20px 10%;
         padding: 10px;
         border: 2px solid $color-primary;
         border-radius: 10px;
@@ -109,9 +179,30 @@ h3 {
     }
 }
 
+// Navbar
 #nav {
     background-color: $color-secondary;
     z-index: 100;
+
+    .menu {
+        display: none;
+        @include extra-small() {
+            display: block;
+            width: 100%;
+            padding: 1em;
+            text-align: right;
+            background-color: $color-secondary;
+        }
+
+        i {
+            display: block;
+
+            &::before {
+                font-size: 50px;
+                color: $color-primary;
+            }
+        }
+    }
 
     .list {
         display: flex;
@@ -121,18 +212,39 @@ h3 {
         padding: 0;
         height: 60px;
         max-width: 1200px;
+        @include extra-small() {
+            display: none;
+            text-align: center;
+            height: 200px;
+        }
+    }
+
+    .on {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
     }
 
     .item {
+        display: block;
         padding: 10px 20px;
         text-decoration: none;
         text-transform: uppercase;
         color: $color-primary;
+        @include extra-small() {
+            font-size: 2em;
+        }
 
         &:hover {
             color: $color-highlight;
             cursor: pointer;
         }
+    }
+
+    .progress-bar {
+        height: 3px;
+        background-color: $color-highlight;
+        width: 1%;
     }
 }
 
@@ -146,6 +258,7 @@ h3 {
     }
 }
 
+// Section: About
 #about {
     text-align: center;
 
@@ -205,13 +318,13 @@ h3 {
     }
 }
 
+// Section: Projects
 #projects {
-    position: relative;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin: 3em auto 1em;
-    padding: .5em .5em 250px;
+    margin: 3em auto 0;
+    padding: .5em .5em 1em;
     color: $color-primary;
     background-color: $color-picture;
 
@@ -222,9 +335,16 @@ h3 {
 
     .project {
         position: relative;
-        height: 300px;
         width: auto;
         background-color: $color-secondary;
+        @include no-hover() {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+        }
+        @include medium() {
+           flex-flow: column nowrap;
+        }
 
         &:hover .image {
             opacity: .1;
@@ -237,8 +357,20 @@ h3 {
         .image {
             display: block;
             width: auto;
-            height: 100%;
+            height: 300px;
             transition: .2s linear;
+            @include no-hover() {
+                position: static;
+            }
+            @include medium() {
+                height: 200px;
+            }
+            @include small() {
+                height: 150px;
+            }
+            @include extra-small() {
+                height: 100px;
+            }
         }
 
         .description {
@@ -248,6 +380,11 @@ h3 {
             text-align: center;
             opacity: 0;
             transition: .2s linear;
+            @include no-hover() {
+                transform: none;
+                position: static;
+                opacity: 1;
+            }
         }
 
         .title {
@@ -275,6 +412,14 @@ h3 {
             }
         }
     }
+}
+
+// Wave animation
+.wave-wrapper {
+    position: relative;
+    background-color: $color-picture;
+    width: 100%;
+    height: 250px;
 
     .wave {
         @include wave();
@@ -297,6 +442,7 @@ h3 {
     }
 }
 
+// Section: Contact
 #contact {
     text-align: center;
 
@@ -313,6 +459,7 @@ h3 {
         height: 5em;
         max-width: 600px;
         margin: 1em auto;
+        padding-right: 3em;
     }
 
     a {
@@ -320,12 +467,12 @@ h3 {
         display: block;
         height: 3em;
         width: 3em;
-        color: $color-secondary;
+        color: $color-primary;
         transform: rotate(-30deg) skew(25deg);
 
         &:hover span:nth-child(5) {
             transform: translate(40px, -40px);
-            color: $color-primary;
+            color: $color-secondary;
             border-color: $color-highlight;
             opacity: 1;
         }
@@ -371,6 +518,7 @@ h3 {
     }
 }
 
+// Footer
 .footer {
     margin: 3em 0 .5em;
 }

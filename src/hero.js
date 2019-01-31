@@ -7,17 +7,22 @@ canvas.height = parent.clientHeight;
 
 const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 100, canvas.width / 2, canvas.height / 2, canvas.height);
 gradient.addColorStop(0, "rgba(255, 255, 255, .2)");
-gradient.addColorStop(0.3, "rgba(220, 20, 60, 1)");
+gradient.addColorStop(0.4, "rgba(220, 20, 60, 1)");
 
 let stars = [];
-const starsNumber = 120;
-const fps = 60;
-const starColor = gradient;
-const backgroundColor = '#232323';
+let starsNumber = 0;
 let mouse = {
     x: 0,
     y: 0
 };
+const fps = 60;
+const starColor = gradient;
+const backgroundColor = '#232323';
+
+if (canvas.width < 600) starsNumber = 100
+else if (canvas.width < 1600) starsNumber = 250;
+else starsNumber = 400;
+console.log (canvas.width);
 
 canvas.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
