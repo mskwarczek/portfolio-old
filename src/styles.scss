@@ -41,7 +41,8 @@ $medium-width: 900px;
     position: absolute;
     top: $vertical;
     left: $horizontal;
-    transform: translate(-$horizontal, -$vertical);
+    -webkit-transform: translate(-$horizontal, -$vertical);
+            transform: translate(-$horizontal, -$vertical);
 }
 
 @mixin wave {
@@ -54,12 +55,29 @@ $medium-width: 900px;
 }
 
 // Animations
+@-webkit-keyframes wave {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 1360px;
+    }
+}
 @keyframes wave {
     0% {
         background-position: 0;
     }
     100% {
         background-position: 1360px;
+    }
+}
+
+@-webkit-keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 
@@ -74,7 +92,8 @@ $medium-width: 900px;
 
 // Global styles
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 html {
@@ -131,8 +150,10 @@ h3 {
 }
 
 .show {
-    animation: show .7s linear;
-    animation-fill-mode: backwards;
+    -webkit-animation: show .7s linear;
+            animation: show .7s linear;
+    -webkit-animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
 }
 
 .no-xs {
@@ -147,6 +168,11 @@ h3 {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+
+    canvas {
+        position: absolute;
+        background-image: radial-gradient(circle, $color-secondary 0, #909090 30%, $color-highlight 50%);
+    }
 
     .content {
         @include position-lt(50%, 50%);
@@ -169,6 +195,7 @@ h3 {
         border-radius: 10px;
         color: $color-primary;
         text-decoration: none;
+        -webkit-transition: .2s linear;
         transition: .2s linear;
 
         &:hover {
@@ -205,9 +232,16 @@ h3 {
     }
 
     .list {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row nowrap;
-        justify-content: left;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+        -webkit-box-pack: left;
+            -ms-flex-pack: left;
+                justify-content: left;
         margin: 0 auto;
         padding: 0;
         height: 60px;
@@ -220,9 +254,16 @@ h3 {
     }
 
     .on {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column nowrap;
+                flex-flow: column nowrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     .item {
@@ -263,9 +304,16 @@ h3 {
     text-align: center;
 
     .features {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: space-evenly;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        -webkit-box-pack: space-around;
+            -ms-flex-pack: space-around;
+                justify-content: space-around;
 
         .feature {
             margin: 20px;
@@ -290,9 +338,16 @@ h3 {
     }
 
     .technologies {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row wrap;
+                flex-flow: row wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         padding: 20px 0;
     }
 
@@ -320,9 +375,16 @@ h3 {
 
 // Section: Projects
 #projects {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin: 3em auto 0;
     padding: .5em .5em 1em;
     color: $color-primary;
@@ -338,12 +400,28 @@ h3 {
         width: auto;
         background-color: $color-secondary;
         @include no-hover() {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
         }
-        @include medium() {
-           flex-flow: column nowrap;
+        @include medium {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
         }
 
         &:hover .image {
@@ -358,11 +436,13 @@ h3 {
             display: block;
             width: auto;
             height: 300px;
+            -webkit-transition: .2s linear;
             transition: .2s linear;
             @include no-hover() {
                 position: static;
             }
             @include medium() {
+                position: static;
                 height: 200px;
             }
             @include small() {
@@ -379,9 +459,17 @@ h3 {
             padding: 10px;
             text-align: center;
             opacity: 0;
+            -webkit-transition: .2s linear;
             transition: .2s linear;
             @include no-hover() {
-                transform: none;
+                -webkit-transform: none;
+                        transform: none;
+                position: static;
+                opacity: 1;
+            }
+            @include medium {
+                -webkit-transform: none;
+                        transform: none;
                 position: static;
                 opacity: 1;
             }
@@ -403,6 +491,7 @@ h3 {
             border-radius: 10px;
             color: $color-primary;
             text-decoration: none;
+            -webkit-transition: .2s linear;
             transition: .2s linear;
     
             &:hover {
@@ -423,7 +512,8 @@ h3 {
 
     .wave {
         @include wave();
-        animation: wave 10s linear infinite;
+        -webkit-animation: wave 10s linear infinite;
+                animation: wave 10s linear infinite;
 
         &::before {
             @include wave();
@@ -435,8 +525,10 @@ h3 {
         &::after {
             @include wave();
             content: "";
-            animation: wave 15s linear infinite;
-            animation-delay: -3s;
+            -webkit-animation: wave 15s linear infinite;
+                    animation: wave 15s linear infinite;
+            -webkit-animation-delay: -3s;
+                    animation-delay: -3s;
             opacity: 0.4;
         }
     }
@@ -452,10 +544,19 @@ h3 {
     }
 
     div {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         height: 5em;
         max-width: 600px;
         margin: 1em auto;
@@ -468,29 +569,34 @@ h3 {
         height: 3em;
         width: 3em;
         color: $color-primary;
-        transform: rotate(-30deg) skew(25deg);
+        -webkit-transform: rotate(-30deg) skew(25deg);
+                transform: rotate(-30deg) skew(25deg);
 
         &:hover span:nth-child(5) {
-            transform: translate(40px, -40px);
+            -webkit-transform: translate(40px, -40px);
+                    transform: translate(40px, -40px);
             color: $color-secondary;
             border-color: $color-highlight;
             opacity: 1;
         }
 
         &:hover span:nth-child(4) {
-            transform: translate(30px, -30px);
+            -webkit-transform: translate(30px, -30px);
+                    transform: translate(30px, -30px);
             border-color: $color-highlight;
             opacity: .8;
         }
 
         &:hover span:nth-child(3) {
-            transform: translate(20px, -20px);
+            -webkit-transform: translate(20px, -20px);
+                    transform: translate(20px, -20px);
             border-color: $color-highlight;
             opacity: .6;
         }
 
         &:hover span:nth-child(2) {
-            transform: translate(10px, -10px);
+            -webkit-transform: translate(10px, -10px);
+                    transform: translate(10px, -10px);
             border-color: $color-highlight;
             opacity: .4;
         }
@@ -509,6 +615,7 @@ h3 {
         height: 100%;
         background-color: $color-highlight;
         border: 1px solid $color-secondary;
+        -webkit-transition: .2s ease-in;
         transition: .2s ease-in;
     }
 

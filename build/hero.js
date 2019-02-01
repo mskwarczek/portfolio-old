@@ -1,13 +1,10 @@
+const parent = document.querySelector('#hero');
+
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
-const parent = document.querySelector('#hero');
 
 canvas.width = parent.clientWidth;
 canvas.height = parent.clientHeight;
-
-const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 100, canvas.width / 2, canvas.height / 2, canvas.height);
-gradient.addColorStop(0, "rgba(255, 255, 255, .2)");
-gradient.addColorStop(0.4, "rgba(220, 20, 60, 1)");
 
 let stars = [];
 let starsNumber = 0;
@@ -16,13 +13,12 @@ let mouse = {
     y: 0
 };
 const fps = 60;
-const starColor = gradient;
+const starColor = 'white';
 const backgroundColor = '#232323';
 
-if (canvas.width < 600) starsNumber = 100
-else if (canvas.width < 1600) starsNumber = 250;
-else starsNumber = 400;
-console.log (canvas.width);
+if (canvas.width < 600) starsNumber = 80
+else if (canvas.width < 1600) starsNumber = 200;
+else starsNumber = 350;
 
 canvas.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
@@ -31,11 +27,11 @@ canvas.addEventListener('mousemove', e => {
 
 for (let i = 0; i < starsNumber; i++) {
     stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.floor(Math.random() * canvas.width),
+        y: Math.floor(Math.random() * canvas.height),
         vx: Math.floor(Math.random() * 50) - 25,
         vy: Math.floor(Math.random() * 50) - 25,
-        r: Math.random() * 1 + 1,
+        r: Math.floor(Math.random() * 1 + 1),
     });
 };
 
@@ -46,17 +42,18 @@ const distance = (point1, point2) => {
     xs = xs * xs;
     ys = point2.y - point1.y;
     ys = ys * ys;
-    return Math.sqrt(xs + ys);
+    return Math.floor(Math.sqrt(xs + ys));
 };
 
 const draw = () => {
+    ctx.globalCompositeOperation = 'xor';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     stars.forEach(star => {
         ctx.fillStyle = starColor;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.arc(star.x, star.y, star.r, 0, Math.floor(2 * Math.PI));
         ctx.fill();
     });
 
