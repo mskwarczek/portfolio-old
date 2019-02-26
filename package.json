@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "My portfolio",
   "scripts": {
-      "start": "sass --watch src/styles.scss:build/styles.css",
-      "build": "sass src/styles.scss:build/styles.css"
+    "start": "sass --watch src/styles.scss:build/styles.css",
+    "build": "sass src/styles.scss:build/styles.css"
   },
   "author": "Maciej Skwarczek",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
