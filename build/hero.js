@@ -17,6 +17,7 @@ const starColor = 'white';
 const backgroundColor = '#232323';
 
 if (canvas.width < 600) starsNumber = 80
+else if (canvas.width < 1100) starsNumber = 140
 else if (canvas.width < 1600) starsNumber = 200;
 else starsNumber = 350;
 
