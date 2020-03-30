@@ -1,3 +1,3 @@
 See my portfolio online:
 
-www.mskwarczek.com
+www.mskwarczek.pl
