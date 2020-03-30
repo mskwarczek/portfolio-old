@@ -96,7 +96,7 @@
                 <p>Front-end side of an online store</p>
                 <p class="highlight">React + Redux</p>
                 <a href="https://github.com/mskwarczek/react-redux-online-store" target="_blank" class="button">See code on GitHub</a>
-                <a href="http://www.store1.mskwarczek.com" target="_blank" class="button">See it online!</a>
+                <a href="http://www.store1.mskwarczek.pl" target="_blank" class="button">See it online!</a>
             </div>
         </div>
     </section>
@@ -107,39 +107,53 @@
 <!-- CONTACT -->
     <section id="contact" class="container">
         <h2 class="section-title hidden">Contact me!</h2>
-        <p class="highlight hidden">We will build great things together :)</p>
-        <div class="hidden">
-            Check out my LinkedIn account
-            <a href="https://www.linkedin.com/in/maciej-s-372514166/" target="_blank">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span><i class="fab fa-linkedin-in"></i></span>
-            </a>
-        </div>
-        <div class="hidden">
-            See more of my projects on GitHub
-            <a href="https://github.com/mskwarczek" target="_blank">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span><i class="fab fa-github"></i></span>
-            </a>
-        </div>
-        <div class="hidden">
-            Send me an e-mail
-            <a href="mailto:contact@mskwarczek.com">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span><i class="fas fa-at"></i></span>
-            </a>
+        <div>
+            <div class="box my-profiles">
+                <div class="box-element hidden">
+                    <p>LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/maciej-s-372514166/" target="_blank">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span><i class="fab fa-linkedin-in"></i></span>
+                    </a>
+                </div>
+                <div class="box-element hidden">
+                    <p>GitHub</p>
+                    <a href="https://github.com/mskwarczek" target="_blank">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span><i class="fab fa-github"></i></span>
+                    </a>
+                </div>
+            </div>
+            <form id="contact-form"
+                class="box form hidden"
+                action="https://formspree.io/maybryvn"
+                method="POST"
+            >
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required="true">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="_replyto" id="email" required="true">
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea rows="15" name="message" id="message" required="true"></textarea>
+                </div>
+                <button>Send</button>
+                <p id="contact-form-status"></p>
+            </form>
         </div>
     </section>
-    <h3 class="footer">Maciej Skwarczek 2019</h3>
+
+    <h3 class="footer">Maciej Skwarczek 2019 - 2020</h3>
 
     <script src="build/scripts.js"></script>
     <script src="build/hero.js"></script>
